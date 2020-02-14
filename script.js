@@ -43,7 +43,7 @@
   function addUserToDOM(user) {
     const output =
       '<div class="user">' +
-        '<img src="' + user.avatar_url + '" width="70" height="70">' +
+        '<img src="' + user.avatar_url + '" >' +
         '<br>' + 
         '<a href="' + user.html_url +  '">' + `${user.login}` + '</a>' +
       '</div>';
