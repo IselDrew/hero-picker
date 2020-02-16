@@ -1,7 +1,7 @@
 body {
   width: 200px;
   margin: auto;
-  /* padding-top: 30px; */
+  padding-top: 30px;
   display: flex;
   flex-direction: column;
 }
