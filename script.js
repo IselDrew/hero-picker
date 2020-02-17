@@ -37,9 +37,11 @@ async function loadUser(pickedUser) {
 function addUserToDOM(user) {
   const output =
     '<div class="user">' +
-      '<img src="' + user.avatar_url + '" >' +
+      '<a href="' + user.html_url +  '" target="_blank">' + 
+        '<img src="' + user.avatar_url + '" >' +
+      '</a>' +
       '<br>' + 
-      '<a href="' + user.html_url +  '">' + `${user.login}` + '</a>' +
+      '<h2>' + user.login + '</h2>' +
     '</div>';
 
   document.querySelector('.users').innerHTML = output;
