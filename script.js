@@ -3,7 +3,6 @@ let users = [
   'oksanakozhukh',
   'antonpanchenk0',
   'giruta',
-  'vitaliyhtml5',
   'staspitsyk',
   'alexandrkrivobok',
   'alekseypetrenko',
