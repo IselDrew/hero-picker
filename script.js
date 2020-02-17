@@ -45,15 +45,17 @@ function addUserToDOM(user) {
   const output =
     '<div class="user">' +
       '<a href="' + user.html_url +  '" target="_blank">' + 
-        '<img src="' + user.avatar_url + '" >' +
+        '<div class="img-wrapper">' +
+          '<img src="' + user.avatar_url + '" >' +
+        '</div>' +
       '</a>' +
       '<br>' + 
-      '<h2>' + user.login + '</h2>' +
+      '<h1>' + user.login + '</h1>' +
     '</div>';
 
   document.querySelector('.users').innerHTML = output;
 }
 
-document.querySelector('.hero').addEventListener('click', getRandomUser);
+document.querySelector('.choose-button').addEventListener('click', getRandomUser);
 document.addEventListener('DOMContentLoaded', getAllUsers)
 
