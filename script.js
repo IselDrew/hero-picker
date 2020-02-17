@@ -9,17 +9,10 @@ let users = [
   'kolesnicknick',
 ];
 
-function getRandomUser() {
-  if(!users.length) {
-    alert('No users left')
-    return
-  }
+const usersInfo = {};
 
-  const randomNumber = Math.floor(Math.random()*users.length);
-  const user = users[randomNumber];
-  users = users.filter(item => { return item != user })
-
-  loadUser(user);
+function getAllUsers() {
+  users.forEach(user => loadUser(user));
 }
 
 async function loadUser(pickedUser) {
@@ -27,10 +20,25 @@ async function loadUser(pickedUser) {
     const link = 'https://api.github.com/users/' + pickedUser;
     let response = await fetch(link);
     let user = await response.json();
-    addUserToDOM(user);
+    usersInfo[pickedUser] = user;
+    console.log(usersInfo);
   } catch (err) {
     console.log(err);
   }
+}
+
+function getRandomUser() {
+  if(!users.length) {
+    alert('No users left');
+    return;
+  }
+
+  const randomNumber = Math.floor(Math.random()*users.length);
+  const gitAcc = users[randomNumber];
+  const user = usersInfo[gitAcc];
+  users = users.filter(item => { return item != gitAcc});
+
+  addUserToDOM(user);
 }
 
 function addUserToDOM(user) {
@@ -47,4 +55,5 @@ function addUserToDOM(user) {
 }
 
 document.querySelector('.hero').addEventListener('click', getRandomUser);
+document.addEventListener('DOMContentLoaded', getAllUsers)
 
