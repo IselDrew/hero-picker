@@ -17,10 +17,13 @@ let users = [
   // 'kolesnicknick',
 ];
 
+const chooseButton = document.querySelector('.choose-button');
+
 const usersInfo = {};
 
 function getAllUsers() {
   users.forEach(user => loadUser(user));
+  console.log(usersInfo);
 }
 
 async function loadUser(pickedUser) {
@@ -29,7 +32,6 @@ async function loadUser(pickedUser) {
     let response = await fetch(link);
     let user = await response.json();
     usersInfo[pickedUser] = user;
-    console.log(usersInfo);
   } catch (err) {
     console.log(err);
   }
@@ -37,8 +39,8 @@ async function loadUser(pickedUser) {
 
 function getRandomUser() {
   if(!users.length) {
-    document.querySelector('.choose-button').textContent = 'Reload' // delete this 
-    document.querySelector('.choose-button').addEventListener('click', reloadPage) // delete this
+    chooseButton.textContent = 'Reload' // delete this 
+    chooseButton.addEventListener('click', reloadPage) // delete this
     showMessage('No Users Left')
     return;
   }
@@ -75,6 +77,6 @@ function addUserToDOM(user) {
   document.querySelector('.users').innerHTML = output;
 }
 
-document.querySelector('.choose-button').addEventListener('click', getRandomUser);
+chooseButton.addEventListener('click', getRandomUser);
 document.addEventListener('DOMContentLoaded', getAllUsers)
 
