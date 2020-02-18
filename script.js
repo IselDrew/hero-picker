@@ -21,6 +21,19 @@ const usersInfo = {};
 
 function getAllUsers() {
   users.forEach(user => loadUser(user));
+  loadList()
+  // console.log(usersInfo)
+}
+
+function loadList() {
+  const userNames = users.map(elem => {
+    return '<li>' + elem + '</li>'; // try usersInfo[elem]
+  })
+  console.log(userNames)
+  const strNamesList = userNames.join('\n')
+  const output =
+    '<ul>' + strNamesList + '</ul>';
+  document.querySelector('.listOfUsers').innerHTML = output;
 }
 
 async function loadUser(pickedUser) {
@@ -29,7 +42,7 @@ async function loadUser(pickedUser) {
     let response = await fetch(link);
     let user = await response.json();
     usersInfo[pickedUser] = user;
-    console.log(usersInfo);
+    // console.log(usersInfo);
   } catch (err) {
     console.log(err);
   }
@@ -39,7 +52,7 @@ function getRandomUser() {
   if(!users.length) {
     document.querySelector('.choose-button').textContent = 'Reload' // delete this 
     document.querySelector('.choose-button').addEventListener('click', reloadPage) // delete this
-    showMessage('No Users Left')
+    showMessage('No Heroes Left')
     return;
   }
 

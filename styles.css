@@ -3,8 +3,7 @@
   width: 500px;
   margin: auto;
   margin-top: 30px;
-  display: flex;
-  flex-direction: column;
+  display: flex; flex-direction: column;
   align-items: center;
 }
 
@@ -66,3 +65,7 @@ img:hover {
   align-items: center;
 }
 
+ul {
+  list-style-type: none;
+  text-align: right;
+}
