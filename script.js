@@ -1,3 +1,10 @@
+// TODO: 
+// 1. Change users array to array of objects;
+//    E.g. [{ name: 'IselDrew', isChecked: false }, {...}, ...]
+// 2. Add list of users with line-through for those, who has isChecked: true;
+// 3. Redo Reload without refreshing page;
+// 4. Rewrite Reload button;
+
 let users = [
   'iseldrew',
   'oksanakozhukh',
@@ -6,7 +13,7 @@ let users = [
   'staspitsyk',
   'alexandrkrivobok',
   'alekseypetrenko',
-  'kolesnicknick',
+  // 'kolesnicknick',
 ];
 
 const usersInfo = {};
@@ -29,7 +36,9 @@ async function loadUser(pickedUser) {
 
 function getRandomUser() {
   if(!users.length) {
-    alert('No users left');
+    document.querySelector('.choose-button').textContent = 'Reload' // delete this 
+    document.querySelector('.choose-button').addEventListener('click', reloadPage) // delete this
+    showMessage('No Users Left')
     return;
   }
 
@@ -39,6 +48,15 @@ function getRandomUser() {
   users = users.filter(item => { return item != gitAcc});
 
   addUserToDOM(user);
+}
+
+function reloadPage() { // delete this
+  location.reload();
+}
+
+function showMessage(msg) {
+  const output = '<h1>' + msg + '</h1>';
+  document.querySelector('.users').innerHTML = output;
 }
 
 function addUserToDOM(user) {
