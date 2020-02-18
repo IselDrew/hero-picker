@@ -13,6 +13,7 @@ let users = [
   'staspitsyk',
   'alexandrkrivobok',
   'alekseypetrenko',
+  'maslovakat',
   // 'kolesnicknick',
 ];
 
