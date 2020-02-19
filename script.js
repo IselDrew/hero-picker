@@ -5,6 +5,7 @@
 // 3. Redo Reload without refreshing page;
 // 4. Rewrite Reload button;
 
+
 let users = [
   'iseldrew',
   'oksanakozhukh',
@@ -17,18 +18,19 @@ let users = [
   // 'kolesnicknick',
 ];
 
-const usersInfo = {};
+// const usersInfo = {};
+const usersInfo = JSON.parse(localStorage.getItem('gitHubAccounts'));
 
-function getAllUsers() {
-  users.forEach(user => loadUser(user));
-  loadList()
-  // console.log(usersInfo)
-}
+// function getAllUsers() {
+//   users.forEach(user => loadUser(user));
+// }
 
 function loadList() {
   const userNames = users.map(elem => {
+    console.log(usersInfo[elem].message)
     return '<li>' + elem + '</li>'; // try usersInfo[elem]
   })
+
   console.log(userNames)
   const strNamesList = userNames.join('\n')
   const output =
@@ -36,17 +38,17 @@ function loadList() {
   document.querySelector('.listOfUsers').innerHTML = output;
 }
 
-async function loadUser(pickedUser) {
-  try {
-    const link = 'https://api.github.com/users/' + pickedUser;
-    let response = await fetch(link);
-    let user = await response.json();
-    usersInfo[pickedUser] = user;
-    // console.log(usersInfo);
-  } catch (err) {
-    console.log(err);
-  }
-}
+// async function loadUser(pickedUser) {
+//   try {
+//     const link = 'https://api.github.com/users/' + pickedUser;
+//     let response = await fetch(link);
+//     let user = await response.json();
+//     usersInfo[pickedUser] = user;
+//     // console.log(usersInfo);
+//   } catch (err) {
+//     console.log(err);
+//   }
+// }
 
 function getRandomUser() {
   if(!users.length) {
@@ -55,6 +57,9 @@ function getRandomUser() {
     showMessage('No Heroes Left')
     return;
   }
+
+  // localStorage.setItem('gitHubStorage', JSON.stringify(usersInfo));
+  // console.log('Obj ', usersInfo, ' added to localStorage')
 
   const randomNumber = Math.floor(Math.random()*users.length);
   const gitAcc = users[randomNumber];
@@ -89,5 +94,5 @@ function addUserToDOM(user) {
 }
 
 document.querySelector('.choose-button').addEventListener('click', getRandomUser);
-document.addEventListener('DOMContentLoaded', getAllUsers)
+document.addEventListener('DOMContentLoaded', loadList)
 
