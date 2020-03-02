@@ -14,7 +14,7 @@
     'alexandrkrivobok',
     'alekseypetrenko',
     'maslovakat',
-    // 'kolesnicknick',
+    'kolesnicknick',
   ];
 
   const chooseButton = document.querySelector('.choose-button');
