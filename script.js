@@ -6,6 +6,26 @@
 // 4. Rewrite Reload button; || done!
 
 (function() {
+  const sounds = [
+    'memeSound1.mp3',
+    'skyrimSound1.mp3',
+    'skyrimSound2.mp3',
+    'warcraftSound1.mp3',
+    'warcraftSound2.mp3',
+    'witcherSound1.mp3', 
+    'witcherSound2.mp3' 
+  ];
+  function getRandomSound() {
+    const randomNumber = Math.floor(Math.random() * sounds.length);
+    return sounds[randomNumber];
+  }
+
+  function playSound() {
+    const randomSound = getRandomSound();
+    const sound = new Audio(`sounds/${randomSound}`)
+    sound.play();
+  }
+
   let users = [
     "iseldrew",
     "oksanakozhukh",
@@ -46,9 +66,12 @@
       reloadPage()
     }
     if (!userList.length) {
+      const sound = new Audio(`sounds/warcraftSoundError.mp3`)
+      sound.play();
       chooseButton.textContent = "Reload"
       showMessage("No Users Left")
     } else {
+      playSound();
       getRandomUser()
     }
   }
